@@ -27,7 +27,11 @@ Select the following options when stepping through the installer:
 
 ### Create Baseline Vivado Project
 
-Start by opening Vivado and clicking `Quick Start -> Create Project`:
+#### Project Setup
+
+We'll start by creating a project in Vivado with the most basic configuration for the PL layer in the SoC.
+
+Open Vivado and click `Quick Start -> Create Project`:
 
 ![Vivado Create Project](image/vivado-create-project.png)
 
@@ -40,3 +44,26 @@ Use the following settings when creating your project:
 * Select "Boards"
     * Select "ZCU102 Evaluation Board"
     ![Board Selection](image/zcu102-selection.png)
+
+#### Block Diagram
+
+The baseline PL layer for the board exists as an IP block in Vivado.  Lets create a block diagram and place this block.
+
+* In the `Flow Navigator` on the left, click `IP Integrator -> Create Block Design`
+    * Use the default settings for the new block design
+* On the Diagram tab, select the `+` button to add a new IP block, then add the `Zynq Ultrascale+ MPSoC` block.
+* Click the `Run Block Automation` button to generate the required connections:
+![Block Design](image/block-automation.png)
+    * Use the default options and click OK
+* Connect `pl_clk0` to `maxihpm0_fpd_aclk` and `maxihpm1_fpd_aclk`
+![Connected Blocks](image/pl-clock.png)
+
+#### Export Hardware Package
+
+We'll now generate a hardware bitstream and Petalinux support package.
+
+* Under `Design Sources`, right click the `edt_zcu102.bd` board file and click "Create HDL Wrapper"
+![Create HDL Wrapper](image/create-hdl-wrapper.png)
+* Expand the newly created wrapper, right click the board file again, and click "Generate Output Products"
+![Generate Output Products](image/generate-output-products.png)
+* Under the Flow Navigator, click on `Program and Debug -> Generate Bitstream`
