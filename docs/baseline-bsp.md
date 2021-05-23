@@ -88,3 +88,25 @@ Install Petalinux by executing `./petalinux-v2020.2-final-installer.run -d ~/pet
 
 ### Create Baseline Petalinux Project
 
+#### Setup Environment
+
+Set an environment variable to the directory you installed petalinux, e.g.
+
+`export PETALINUX_DIR=~/petalinux/`
+
+Setup the environment:
+
+`source $PETALINUX_DIR/settings.sh`
+
+#### Create Project
+
+Navigate to where you want to create the project, then run
+
+`petalinux-create -t project -n <PROJECT_NAME> --template zynqMP`
+
+Or, using the rake system:
+
+```
+rake set_project[<PROJECT_NAME>]
+rake create_project
+```
