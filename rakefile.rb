@@ -21,12 +21,13 @@ desc "Install the required packages for Ubuntu"
 task :install_requirements do
     sh "sudo dpkg --add-architecture i386"
     sh "sudo apt-get update"
-    sh "sudo apt-get install -y $(grep -vE \"^\s*#\" #{REQUIREMENTS_FILE}  | tr \"\n\" \" \")"
+    sh "sudo apt-get install -y $(grep -vE \"^\s*#\" '#{REQUIREMENTS_FILE}'  | tr \"\n\" \" \")"
 end
 
 desc "Create the selected petalinux project in the #{PETALINUX_SRC} directory"
 task :create_project do
     Dir.chdir(PETALINUX_SRC_PATH) do
-        sh "petalinux-create -t project -n #{active_project} --template zynqMP"
+        sh "petalinux-create -t project -n '#{active_project}' --template zynqMP"
     end
 end
+
