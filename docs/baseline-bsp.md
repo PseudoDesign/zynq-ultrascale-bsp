@@ -78,3 +78,13 @@ Created using Ubuntu 20.04
 
 ### Install Petalinux
 
+Download the Petalinux installer from [Xilinx](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools/2020-2.html); you should have the `petalinux-v2020.2-final-installer.run` file.
+
+#### Native OS Install
+
+Install the requirements by executing `rake install_requirements`
+
+Install Petalinux by executing `./petalinux-v2020.2-final-installer.run -d ~/petalinux`.  Accept the license agreement, and install where appropriate for your system.
+
+### Create Baseline Petalinux Project
+
