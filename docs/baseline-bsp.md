@@ -1,16 +1,16 @@
-## Baseline BSP
+## Baseline Hardware
 
 Baseline instructions for setting up a BSP for a Xilinx devices.  Specific instructions will target the ZCU102 Evaluation Kit, but generically this works for all Xilinx SoC devices.
-
-Primarily following the guide from [Xilinx](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug1209-embedded-design-tutorial.pdf).
 
 ### Setup
 
 You'll need a [Xilinx Account](https://www.xilinx.com/registration/create-account.html) to install the required software.
 
-For the ZCU102 Evaluation Kit, a license voucher should be included on the back of your Quick Start Guide.  You'll want to generate a Node-Locked license, or whatever meets your organization's license requirements.
+If you're using a ZCU102 Evaluation Kit, a license voucher should be included on the back of your Quick Start Guide.  You'll want to generate a Node-Locked license, or whatever meets your organization's license requirements.
 
 #### Install Vivado
+
+I ran this using Windows 10, but the workflow should be roughly the same on Ubuntu.
 
 Install [Vivado Design Suite 2020.2](https://www.xilinx.com/products/design-tools/vivado.html)
 
@@ -27,6 +27,7 @@ Select the following options when stepping through the installer:
 
 ### Create Baseline Vivado Project
 
+Primarily following the guide from [Xilinx](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug1209-embedded-design-tutorial.pdf).
 #### Project Setup
 
 We'll start by creating a project in Vivado with the most basic configuration for the PL layer in the SoC.
@@ -67,3 +68,13 @@ We'll now generate a hardware bitstream and Petalinux support package.
 * Expand the newly created wrapper, right click the board file again, and click "Generate Output Products"
 ![Generate Output Products](image/generate-output-products.png)
 * Under the Flow Navigator, click on `Program and Debug -> Generate Bitstream`
+* Export the hardware by clicking `File -> Export -> Export Hardware`
+    * Choose `Include bitstream` from the output options
+
+
+## Baseline Petalinux BSP
+
+Created using Ubuntu 20.04
+
+### Install Petalinux
+

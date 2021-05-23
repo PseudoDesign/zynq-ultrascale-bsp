@@ -1,0 +1,3 @@
+[submodule "zynq-ultrascale-vivado"]
+	path = zynq-ultrascale-vivado
+	url = git@github.com:PseudoDesign/zynq-ultrascale-vivado.git
