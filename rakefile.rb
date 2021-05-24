@@ -17,6 +17,11 @@ task :set_project, [:project_name] do |t, args|
     File.write(ACTIVE_PROJECT_FILE, args[:project_name])
 end
 
+desc "Get the name of the current active project"
+task :get_project do
+    puts "The currect active project is '#{active_project}'"
+end
+
 desc "Install the required packages for Ubuntu"
 task :install_requirements do
     sh "sudo dpkg --add-architecture i386"
