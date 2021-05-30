@@ -12,6 +12,14 @@ def active_project
     raise "No active project selected.  Select one using 'rake set_project[<PROJECT_NAME>]'"
 end
 
+def active_project_path
+    return File.join(PETALINUX_SRC_PATH, active_project)
+end
+
+task :test_petalinux_environment do
+    raise "ERROR: Petalinux environment is not defined. Did you remember to 'source' it? See the readme for details." if ENV["PETALINUX"].nil?
+end
+
 desc "Select the active Petalinux project set_project[zynq-ultrascale-bsp]"
 task :set_project, [:project_name] do |t, args|
     File.write(ACTIVE_PROJECT_FILE, args[:project_name])
@@ -30,9 +38,23 @@ task :install_requirements do
 end
 
 desc "Create the selected petalinux project in the #{PETALINUX_SRC} directory"
-task :create_project do
+task :create_project => :test_petalinux_environment do
     Dir.chdir(PETALINUX_SRC_PATH) do
         sh "petalinux-create -t project -n '#{active_project}' --template zynqMP"
     end
 end
 
+desc "Import the XSA file hardware configruation"
+task :import_hardware, [:xsa_file] => :test_petalinux_environment do |t, args|
+    xsa_file = File.expand_path(args[:xsa_file])
+    Dir.chdir(active_project_path) do
+        sh "petalinux-config --get-hw-description '#{xsa_file}' --silentconfig"
+    end
+end
+
+desc "Run the Linux kernel config utility"
+task :kernel_config => :test_petalinux_environment do 
+    Dir.chdir(active_project_path) do
+        sh "petalinux-config"
+    end
+end

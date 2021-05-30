@@ -117,3 +117,9 @@ Now we'll import the `.xsa` file generated earlier by executing
 
 `petalinux-config --get-hw-description <PATH_TO_XSA_FILE>`
 
+Or, using the rake system:
+
+```
+rake set_project[<PROJECT_NAME>]
+rake import_hardware[<PATH_TO_XSA_FILE>]
+```
