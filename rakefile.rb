@@ -58,3 +58,11 @@ task :kernel_config => :test_petalinux_environment do
         sh "petalinux-config"
     end
 end
+
+desc "Build the petalinux project"
+task :build_release => :test_petalinux_environment do 
+    Dir.chdir(active_project_path) do
+        sh "petalinux-build"
+        sh "petalinux-package --boot --u-boot --format BIN"
+    end
+end

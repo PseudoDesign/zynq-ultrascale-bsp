@@ -130,3 +130,18 @@ rake import_hardware[<PATH_TO_XSA_FILE>]
 rake set_project[<PROJECT_NAME>]
 rake kernel_config
 ```
+
+### Build the Deployable System Image
+
+```
+rake set_project[<PROJECT_NAME>]
+rake build_release
+```
+
+## Installation and Boot
+
+### SD Card
+
+
+### TFTP
+
