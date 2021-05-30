@@ -123,3 +123,10 @@ Or, using the rake system:
 rake set_project[<PROJECT_NAME>]
 rake import_hardware[<PATH_TO_XSA_FILE>]
 ```
+
+#### Run Kernel Config
+
+```
+rake set_project[<PROJECT_NAME>]
+rake kernel_config
+```
